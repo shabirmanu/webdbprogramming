@@ -38,10 +38,10 @@
         <div class="row align-items-start">
           <div class="col-md-2">
             <ul class="custom-menu">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="about.html">About Me</a></li>
-              <li><a href="services.html">Services</a></li>
-              <li><a href="works.html">Works</a></li>
+              <li><a href="index"><? __('Home') ?></a></li>
+              <li><a href="about">About Me</a></li>
+              <li><a href="services">Services</a></li>
+              <li><a href="works">Works</a></li>
               <li class="active"><a href="contact.html">Contact</a></li>
             </ul>
           </div>
@@ -64,7 +64,18 @@
   
     <nav class="navbar navbar-light custom-navbar">
       <div class="container">
-        <a class="navbar-brand" href="index.html">MyPortfolio.</a>
+        <a class="navbar-brand" href="index.html">S.</a>
+        <div class="login-info">
+        <% if(username) { %>
+          <p>Welcome <%= username %></p> | <a href="/logout">Logout</a>
+        <% } else { %>
+          <a href="/login">Login</a>
+        <% }  %>
+        </div>
+        <div class="lang_switch">
+          <a href="/lang/en">English</a> | <a href="/lang/ko">한국어</a>
+        </div>  
+
         <a href="#" class="burger" data-bs-toggle="collapse" data-bs-target="#main-navbar">
           <span></span>
         </a>

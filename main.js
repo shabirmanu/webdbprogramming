@@ -1,11 +1,73 @@
 const express = require('express')
+const cookieParser = require('cookie-parser')
 const app = express()
 const mysql = require('mysql')
+const i18n = require('i18n')
+
+const flash = require('connect-flash')
+
+app.use(cookieParser())
+app.use(flash())
+var session = require('express-session')
+/**
+ * Session configuration
+ */
+
+/**
+ * Configure i18n module
+ */
+
+i18n.configure({
+    locales:['en','ko'],
+    directory: __dirname+'/locales',
+    defaultLocale:'en',
+    cookie:'lang',
+    objectNotation:true,
+})
+
+app.use(i18n.init)
+
+// Populates req.session
+app.use(session({
+    resave: false, // don't save session if unmodified
+    saveUninitialized: false, // don't create session until something stored
+    secret: 'keyboard cat'
+  }));
 
 /**
  * Install EJS and then include the following in your code
  */
 const ejs = require('ejs')
+
+/**
+ * Login Check
+ */
+function requireLogin(req, res, next){
+    if(req.session.username) {
+        next()
+    }
+    else {
+        req.flash('error', 'You have to login first!');
+        res.redirect("/login")
+    }
+}
+
+
+
+/**
+ * Store data in res local
+ */
+
+app.use((req, res, next) => {
+    res.locals.username = req.session.username || null;
+    if(req.session.username) {
+        res.locals.role = req.session.role
+        console.log("role")
+        console.log(res.locals.role)
+    }
+    next()
+})
+
 
 app.use("/scripts", express.static(__dirname+"/scripts"))
 app.use("/assets", express.static(__dirname+"/pages/assets/"))
@@ -14,6 +76,8 @@ app.use(express.urlencoded({extended: true}))
 
 app.set("view engine", "ejs")
 app.set("views", "./views")
+
+
 
 const pool = mysql.createPool({
     host: "localhost",
@@ -27,9 +91,24 @@ app.listen(8080, ()=> {
     console.log("connection established")
 })
 
+
+/**
+ * Language Routes
+ */
+app.get('/lang/:locale', (req, res) => {
+    const locale = req.params.locale;
+    console.log('local ='+locale)
+    res.cookie('lang', locale);
+    res.redirect('back'); // Redirect back to the previous page or use a specific URL
+  });
+
 app.get("/", (req, res)=>{
     console.log(__dirname)
-    res.render('index')
+    res.render('index', {
+        welcome: res.__('welcome'),
+        intro: res.__('intro'),
+        job: res.__('job')
+    })
 })
 
 app.get("/about", (req, res)=>{
@@ -44,9 +123,17 @@ app.get("/signup", (req, res)=>{
     res.render('signup')
 })
 
+/**
+ * Login Route
+ */
+app.get("/login", (req, res)=>{
+    
+    res.render('signin')
+})
 
 
-app.get("/users", (req, res)=>{
+
+app.get("/users", requireLogin, (req, res)=>{
     pool.getConnection((err, conn) =>{
         if(err) throw err
 
@@ -112,6 +199,43 @@ app.get("/users/:id/delete", (req, res) => {
     
 
     
+})
+
+app.get("/logout",(req, res) => {
+    req.session.destroy()
+    res.redirect("/")
+})
+
+
+app.post("/process/signin", (req, res) => {
+    
+    pool.getConnection((err, conn) => {
+        if(err) throw err
+        const username = req.body.username
+        const pwd = req.body.pwd
+
+        console.log("before SELECT query!!", username,pwd)
+        
+        
+        const exec = conn.query('SELECT * FROM users where username = ? AND pwd = password(?)', [username, pwd], (err, rows) => {
+            conn.release()
+            console.log('SQL', exec.sql)
+            if(!err) {
+                if(rows.length > 0) {
+                    req.session.username = rows[0].username
+                    req.session.role = rows[0].role
+                    console.log("session info")
+                    console.log(req.session.username)
+                }
+                res.redirect("/")
+            }
+            else {
+                console.log(`The data from the user table are:11 \n`, rows)
+            }
+        })
+
+        
+    })
 })
 
 
