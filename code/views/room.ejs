@@ -1,0 +1,47 @@
+<%- include('head') %>
+<%- include('head2') %>
+
+<section class="section section-md">
+    <div class="shell">
+      <h3>Rooms & Suites</h3>
+      <p>Royal Villas offers the finest accommodations with unique designs that provide both a luxurious and relaxing environment. Specially <br> selected fabrics and finishes vary from room to room, offering guests a variety of beautiful and unique atmospheres to select from.</p>
+        
+        <% data.forEach((row, index)=>{ %>
+          <div class="range range-30" data-lightgallery="group">
+            <div class="section section-md">
+              <p><%= row.roomname %> Room</p>
+              <p><%= row.roomdesc %></p>
+            </div>
+        <div class="cell-sm-6 cell-md-4"><a class="thumbnail-classic" href="images/grid-gallery-<%= row.roomid %>-1200x800_original.jpg" data-lightgallery="item">
+            <figure><img src="images/grid-gallery-<%= row.roomid %>-370x276.jpg" alt="" width="370" height="276"/>
+            </figure>
+            <div class="caption">
+              <p class="caption-title"><%= row.roomname %> Room</p>
+              <p class="caption-text"><%= row.roomdesc %></p>
+            </div></a>
+        </div>
+        </div>
+        <% if(role === 1) { %>
+        <form action="process/room/<%= row.roomid %>" method="post" role="form" class="">
+
+          <div class="row gy-3">
+            <div>
+              <p>현재 방 개수: <%= row.roomnum %></p>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="roomcnt">방 개수 변경</label>
+                <input type="text" value="" name="roomcnt" id="roomcnt">
+            </div>
+            
+            <div class="col-md-6 mt-0 form-group">
+              <input type="submit" class="readmore d-block w-100" value="update">
+            </div>
+          </div>
+
+        </form>
+        <% } %>
+        <% }) %>
+    </div>
+  </section>
+
+  <%- include('foot') %>
