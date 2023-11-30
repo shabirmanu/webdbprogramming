@@ -52,8 +52,8 @@ app.use(flash())
 // mysql database 연결
 const pool = mysql.createPool({
     host: 'localhost',
-    user:  'user01',
-    password: '0000',
+    user:  'root',
+    password: '',
     database: 'hoteldb'
 })
 
