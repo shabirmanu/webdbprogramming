@@ -13,7 +13,7 @@ const fs = require('fs')
 /* express */
 app.use('/scripts', express.static(__dirname+'/scripts'))
 app.use('/assets', express.static(__dirname+'/assets/'))
-app.use('/WebDB/assets/img/', express.static('/WebDB/assets/img/'))
+app.use('/webdbprogramming/assets/img/', express.static('/webdbprogramming/assets/img/'))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json());
 app.use(session({
@@ -38,7 +38,7 @@ const pool = mysql.createPool({
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     // 파일이 저장될 경로
-    cb(null, 'WebDB/assets/img/');
+    cb(null, 'webdbprogramming/assets/img/');
   },
   filename: function (req, file, cb) {
     // 파일명 (여기서는 원본 파일명에 업로드 시간을 추가함)
