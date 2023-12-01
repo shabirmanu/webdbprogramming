@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<title>사진 업로드</title>
+<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+<body>
+
+    <section class="wrapper style1 align-center">
+        <div class="inner medium">
+            <h2>사진 업로드</h2>
+            <form method="post" action="/save_photo" enctype="multipart/form-data">
+                <div class="fields">
+                    <div class="field">
+                        <label for="text">제목</label>
+                        <input type="text" name="title" id="title" value="" required>
+                    </div>
+                    <div class="field">
+                        <label for="message">사진</label>
+                        <input type="file" name="photo" required/>
+                    </div>
+                </div>
+                <ul class="actions special">
+                    <li><input type="submit" name="submit" id="submit" value="POST PHOTO" required></li>
+                </ul>
+            </form>
+        </div>
+    </section>
+</body>
+<footer class="wrapper style1 align-center">
+    <div class="inner">
+        <ul class="icons">
+            <li><a href="/"><span class="button">HOME</span></a></li>
+
+        </ul>
+        <p>&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+    </div>
+</footer>
+</html>

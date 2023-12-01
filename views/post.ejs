@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <title>글 목록</title>
+</head>
+<body>
+    <section class="wrapper style1 align-center">
+        <div class="post-container">
+            <h2>글 목록</h2>
+            <ul>
+                <% posts.forEach(post => { %>
+                    <li class="post-item">
+                        <span class="post-title" onclick="toggleContent('content-<%= post.id %>')">
+                            <div class="align-left">
+                                <%= post.title %>
+                            </div>
+                        </span>
+                        <div class="wrapper style1 align-right">
+                            <h4><%= post.username %></h4>
+                        </div>
+                        <div id="content-<%= post.id %>" class="align-left" style="display: none;">
+                            <%= post.contents %>
+                            <br>
+                            <h6 class="align-right"><%= post.uploaded_at %></h6>
+                            <br>
+                            <% if (post.user_id === loggedInUserId) { %>
+                                <div class="wrapper align-right">
+                                    <button onclick="editpost('<%= post.id %>')" class="button small">Edit</button>
+                                    <button onclick="deletepost('<%= post.id %>')" class="button small">Delete</button>
+                                </div>
+                            <% } %>
+                            <br>
+                            <ul id="comments-<%= post.id %>" class="align-left">
+                                    <% post.comments.forEach(comment => { %>
+                                        <div class="align-left">
+                                            <li id="comment-<%= comment.id %>">
+                                                <h5><b><%= comment.commenter_username %></b></h5>
+                                                <h5><%= comment.comment %></h5>
+                                                <h6 class="align-right"><%= comment.uploaded_at %></h6>
+                                                    <div class="align-right">
+                                                        <% if (comment.user_id === loggedInUserId) { %>
+                                                            <!-- 로그인한 사용자가 작성한 댓글에 대해 삭제 버튼을 표시합니다. -->
+                                                            <button onclick="deleteComment('<%= comment.id %>')" class="delete-comment-btn">DELETE</button>
+                                                        <% } %>
+                                                    </div>
+                                                </h5>
+                                            </li>
+                                        </div>
+                                    <% }) %>
+                            </ul>
+                            <% if (loggedIn) { %>
+                            <form method="post" action="/add_comment">
+                                <textarea name="comment" placeholder="Add a comment..."></textarea>
+                                <input type="hidden" name="post_id" value="<%= post.id %>">
+                                <br>
+                                <div class="align-right">
+                                    <button type="submit" class="button small">Post Comment</button>
+                                </div>
+                            </form>
+                            <% } %>
+                        </div>
+                    </li>
+                <% }) %>
+            </ul>
+            <ul class="icons align-right">
+                <li><a href="/upload"><span class="button">POST</span></a></li>
+            </ul>
+        </div>
+    </section>
+
+    <footer class="wrapper style1 align-center">
+        <div class="inner">
+            <ul class="icons">
+                <li><a href="/"><span class="button">HOME</span></a></li>
+            </ul>
+            <p>&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleContent(contentId) {
+            var content = document.getElementById(contentId);
+            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function deletepost(postId) {
+            if(confirm('글을 삭제하시겠습니까?')) {
+                fetch('/delete_post/' + postId, { method: 'DELETE' })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.success) {
+                        window.location.reload(); // Reload the page to reflect the changes
+                    } else {
+                        alert('Unable to delete post.');
+                    }
+                })
+                .catch(error => {
+                    alert('Error deleting post.');
+                    console.error('Error:', error);
+                });
+            }
+        }
+
+        function editpost(postId) {
+            // Redirect to the edit page with the post ID
+            window.location.href = '/edit_post/' + postId;
+        }
+
+        function deleteComment(commentId) {
+            if(confirm('댓글을 삭제하시겠습니까?')) {
+                fetch('/delete_comment/' + commentId, { method: 'DELETE' })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.success) {
+                        // 성공적으로 삭제되면, 해당 댓글을 DOM에서 제거합니다.
+                        const commentElement = document.getElementById('comment-' + commentId);
+                        commentElement.remove();
+                    } else {
+                        // 실패 메시지를 사용자에게 알립니다.
+                        alert('Failed to delete comment: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
