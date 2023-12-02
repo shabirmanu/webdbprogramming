@@ -1,0 +1,68 @@
+<%- include('nav') %>
+
+<style>
+    input[type="text"] {
+        width: 80%; /* Adjust this value as needed */
+        padding: 5px;
+        margin: 5px 0;
+    }
+    button {
+        margin-top: 10px;
+    }
+</style>
+
+<div class="container bootdey" style="padding-top: 50px;">
+    <h1>데이터 수정</h1>
+
+    <!-- Edit Form -->
+    <form action="/admin/edit" method="POST">
+        <label for="id">id:</label>
+        <input type="text" name="id" value="<%= data.id %>" readonly><br>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="<%=data.goods_name%>"><br>
+
+        <label for="Url">URL:</label>
+        <input type="text" id="Url" name="Url" value="<%= data.goods_url %>"><br>
+
+        <label for="imageUrl">Image URL:</label>
+        <input type="text" id="imageUrl" name="imageUrl" value="<%= data.goods_image %>"><br>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+            <option value="Food" <%= data.category === 'Food' ? 'selected' : '' %>>Food</option>
+            <option value="fashion-sundries" <%= data.category === 'fashion-sundries' ? 'selected' : '' %>>fashion-sundries</option>
+            <option value="Health" <%= data.category === 'Health' ? 'selected' : '' %>>Health</option>
+            <option value="Beauty" <%= data.category === 'Beauty' ? 'selected' : '' %>>Beauty</option>
+            <option value="child-birth" <%= data.category === 'child-birth' ? 'selected' : '' %>>child-birth</option>
+            <option value="kitchen" <%= data.category === 'kitchen' ? 'selected' : '' %>>kitchen</option>
+            <option value="life" <%= data.category === 'life' ? 'selected' : '' %>>life</option>
+            <option value="home_decoration" <%= data.category === 'home_decoration' ? 'selected' : '' %>>home_decoration</option>
+            <option value="appliances-digital" <%= data.category === 'appliances-digital' ? 'selected' : '' %>>appliances-digital</option>
+            <option value="sports" <%= data.category === 'sports' ? 'selected' : '' %>>sports</option>
+            <option value="car" <%= data.category === 'car' ? 'selected' : '' %>>car</option>
+            <option value="hobby" <%= data.category === 'hobby' ? 'selected' : '' %>>hobby</option>
+            <option value="office" <%= data.category === 'office' ? 'selected' : '' %>>office</option>
+            <option value="pet" <%= data.category === 'pet' ? 'selected' : '' %>>pet</option>
+        </select><br>
+
+        
+        <label for="goods_price">goods_price:</label>
+        <input type="text" id="goods_price" name="goods_price" value="<%= data.goods_price %>"><br>
+
+        
+        <label for="goods_discount_price">goods_discount_price:</label>
+        <input type="text" id="goods_discount_price" name="goods_discount_price" value="<%= data.goods_discount_price %>"><br>
+
+        <!-- Add other fields as needed -->
+
+        <button type="submit">갱신하기</button>
+    </form>
+
+    <form action="/admin" method="get">
+        <button type="submit" style="margin-top: 10px;">Cancel</button>
+    </form>
+</div>
+
+</body>
+</html>

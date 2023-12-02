@@ -1,0 +1,67 @@
+<%- include('nav') %>
+
+<style>
+    input[type="text"] {
+        width: 80%; /* Adjust this value as needed */
+        padding: 5px;
+        margin: 5px 0;
+    }
+    button {
+        margin-top: 10px;
+    }
+</style>
+
+<div class="container bootdey" style="padding-top: 50px;">
+    <h1>데이터 추가</h1>
+
+    <!-- Edit Form -->
+    <form action="/admin/input" method="POST">
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value=""><br>
+
+        <label for="Url">URL:</label>
+        <input type="text" id="Url" name="Url" value=""><br>
+
+        <label for="imageUrl">Image URL:</label>
+        <input type="text" id="imageUrl" name="imageUrl" value=""><br>
+
+
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+            <option value="Food" selected>Food</option>
+            <option value="fashion-sundries">fashion-sundries</option>
+            <option value="Health">Health</option>
+            <option value="Beauty">Beauty</option>
+            <option value="child-birth">child-birth</option>
+            <option value="kitchen">kitchen</option>
+            <option value="life">life</option>
+            <option value="home_decoration">home_decoration</option>
+            <option value="appliances-digital">appliances-digital</option>
+            <option value="sports">sports</option>
+            <option value="car">car</option>
+            <option value="hobby">hobby</option>
+            <option value="office">office</option>
+            <option value="pet">pet</option>
+        </select><br>
+
+        
+        <label for="goods_price">goods_price:</label>
+        <input type="text" id="goods_price" name="goods_price" value=""><br>
+
+        
+        <label for="goods_discount_price">goods_discount_price:</label>
+        <input type="text" id="goods_discount_price" name="goods_discount_price" value=""><br>
+
+        <!-- Add other fields as needed -->
+
+        <button type="submit">추가하기</button>
+    </form>
+
+    <form action="/admin" method="get">
+        <button type="submit" style="margin-top: 10px;">Cancel</button>
+    </form>
+</div>
+
+</body>
+</html>
