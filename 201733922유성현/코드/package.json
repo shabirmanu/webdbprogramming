@@ -1,0 +1,29 @@
+{
+  "name": "webdb_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "i18n": "^0.15.1",
+    "jsdom": "^23.0.0",
+    "mysql": "^2.18.1",
+    "readability": "github:mozilla/readability#52ab9b5c8",
+    "request-promise": "^4.2.6",
+    "rss": "^1.2.2",
+    "rss-parser": "^3.13.0",
+    "wget": "^0.0.1"
+  }
+}
