@@ -1,0 +1,117 @@
+
+
+    <%- include('nav') %>
+
+
+  <div class="container" style="margin-top: 70px;">
+    <div class="input-form-backgroud row">
+      <div class="input-form col-md-12 mx-auto">
+        <h3 class="mb-3" style="margin-bottom: 30px;">회원가입</h3>
+
+        <form class="validation-form needs-validation"  action="/signup" method="post" novalidate>
+          <div class="row">
+            <div class="col-md-12 mb-3" style="margin-bottom: 10px;">
+              <label for="id" class="form-label">아이디</label>
+              <input type="text" class="form-control" name="id" id="id" placeholder="" value="" required>
+
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="password" class="form-label">비밀번호</label>
+              <input type="password" class="form-control" name="password" id="password" placeholder="" value="" required>
+
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="passwordConfirm" class="form-label">비밀번호 확인</label>
+                <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" placeholder="" value="" required>
+  
+              </div>
+          </div>
+
+          <div class="mb-3" style="margin-top: 10px;">
+            <label for="email" class="form-label">이메일</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com" required>
+
+          </div>
+
+
+          <hr class="mb-4">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="aggrement" required>
+            <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+          </div>
+          <div class="mb-4"></div>
+          <div class="col-md-11"></div>
+          <button class="btn btn-primary btn-md col-md-1" type="submit">가입 완료</button>
+        </form>
+        <div class="btn-warning padding-top"><%=message%></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('load', () => {
+      const forms = document.getElementsByClassName('validation-form');
+
+      Array.prototype.filter.call(forms, (form) => {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', function(event) {
+      const id = form.querySelector('[name="id"]').value;
+      const password = form.querySelector('[name="password"]').value;
+      const email = form.querySelector('[name="email"]').value;
+      const passwordConfirm = form.querySelector('[name="passwordConfirm"]').value;
+      const termsCheckbox = form.querySelector('[id="aggrement"]');
+
+      // Basic Validation
+      if (id.length < 5) {
+        alert("id는 최소 5자 이상을 입력해주세요");
+        event.preventDefault(); // Prevent form submission
+        return
+      }
+
+      if (password.length < 8) {
+        alert("비밀번호는 최소 8자 이상을 입력해주세요");
+        event.preventDefault();
+        return
+      }
+
+      if (password !== passwordConfirm) {
+        alert("비밀번호가 비밀번호 확인과 맞지 않습니다.");
+        event.preventDefault(); // Prevent form submission
+        return
+      }
+
+      if (!validateEmail(email)) {
+        alert("적절한 이메일을 입력해주세요");
+        event.preventDefault(); // Prevent form submission
+      }
+
+      if (!termsCheckbox.checked) {
+        alert("개인정보 수집 및 이용에 동의하셔야합니다.");
+        event.preventDefault(); // Prevent form submission
+      }
+
+      // Add more validation as needed...
+    });
+
+    function validateEmail(email) {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email format regex
+      return regex.test(email);
+    }
+    
+  });
+  </script>
+</body>
+
+</html>
