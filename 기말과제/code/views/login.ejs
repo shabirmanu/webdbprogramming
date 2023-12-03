@@ -1,0 +1,27 @@
+<%- include("header") %>
+
+<html>
+  <head>
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <script text="text/javascript" src="../scripts/scripts.js"></script>
+    <title>ShopLogin Page</title>
+  </head>
+  <body>
+    <form action="/process/login" method="POST" class="joinForm">
+                                                                                               
+      <h2>로그인</h2>
+      <div class="textForm">
+        <input name="username" type="text" class="id" placeholder="아이디">
+        </input>
+      </div>
+      <div class="textForm">
+        <input name="password" type="password" class="pw" placeholder="비밀번호">
+      </div>
+
+      
+      <input type="submit" class="btn" value="LOGIN"/>
+      <a href="/signup" class="btn">회원가입</a>
+    </form>
+  </body>
+  
+</html>

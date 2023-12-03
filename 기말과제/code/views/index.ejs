@@ -1,0 +1,211 @@
+<%- include("header") %>
+    <!-- Header-->
+    <header class="bg-grey py-5">
+      <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+          <h1 class="display-4 fw-bolder"><img src/>Modern Style Shop</h1>
+          
+        </div>
+      </div>
+    </header>
+    <!-- Section-->
+    <section class="py-5">
+      <div class="container px-4 px-lg-5 mt-5">
+        <div
+          class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+        >
+          
+          <div class="col mb-5">
+            <form action="process/cart" method='POST' class="card h-100">
+              <!-- Sale badge-->
+              <div
+                class="badge bg-dark text-white position-absolute"
+                style="top: 0.5rem; right: 0.5rem"
+              >
+                Sale
+              </div>
+              <!-- Product image-->
+              <img
+                class="card-img-top"
+                src="https://stan-d.co.kr/web/product/big/202301/f23c3f2b59fbd232fef3fe3274acfb1d.jpg"
+                alt="..."
+              />
+              <!-- Product details-->
+              <div class="card-body p-4">
+                <div class="text-center">
+                  <!-- Product name-->
+                  <h5 class="fw-bolder">sofa</h5>
+                  <input type="hidden" class="fw-bolder" name="productname" id="productname" value="sofa"></input>
+                  <!-- Product reviews-->
+                  <div
+                    class="d-flex justify-content-center small text-warning mb-2"
+                  >
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                  </div>
+                  <!-- Product price-->
+                  <span class="text-muted text-decoration-line-through"
+                    >$20.00</span
+                  >
+                  <input type="hidden" name="price" id="price" value="18">$18.00</input> 
+                </div>
+              </div>
+              <!-- Product actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center">
+                  <button class="btn btn-outline-dark mt-auto" type="submit"
+                    >Add to cart</a
+                  >
+                </div>
+              </div>
+            </form>
+        </div>
+          <div class="col mb-5">
+            <form action='process/cart' method="POST" class="card h-100">
+              <!-- Sale badge-->
+              <div
+                class="badge bg-dark text-white position-absolute"
+                style="top: 0.5rem; right: 0.5rem"
+              >
+                Sale
+              </div>
+              <!-- Product image-->
+              <img
+                class="card-img-top"
+                src="data:image/jpeg;base64,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"
+                alt="..."
+              />
+              <!-- Product details-->
+              <div class="card-body p-4">
+                <div class="text-center">
+                  <!-- Product name-->
+                  <h5 class="fw-bolder">Desk</h5>
+                  <input type="hidden" class="fw-bolder" name="productname" id="productname" value="desk"></input>
+                  <!-- Product price-->
+                  <div
+                    class="d-flex justify-content-center small text-warning mb-2"
+                    >
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    
+                  </div>
+                  <span class="text-muted text-decoration-line-through"
+                    >$50.00</span
+                  >
+                  <input type="hidden" name="price" id="price" value="25">$25.00</input> 
+                </div>
+              </div>
+              <!-- Product actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center">
+                  <button class="btn btn-outline-dark mt-auto" type="submit"
+                    >Add to cart</a
+                  >
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col mb-5">
+            <form action="process/cart" method='POST'  class="card h-100">
+              <!-- Product image-->
+              <img
+                class="card-img-top"
+                src="https://m.woodique.co.kr/web/product/extra/big/202205/b0ca6bdb619f905872017f907813acdb.jpg"
+                alt="..."
+              />
+              <!-- Product details-->
+              <div class="card-body p-4">
+                <div class="text-center">
+                  <!-- Product name-->
+                  <h5 class="fw-bolder">bed</h5>
+                  <input type="hidden" class="fw-bolder" name="productname" id="productname" value="bed"></input>
+                 
+                  
+                  <!-- Product reviews-->
+                  <div
+                    class="d-flex justify-content-center small text-warning mb-2"
+                  >
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    
+                  </div>
+                  <!-- Product price-->
+                  
+                  <input type="hidden" name="price" id="price" value="40">$40.00</input>
+                </div>
+              </div>
+              <!-- Product actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center">
+                  <button class="btn btn-outline-dark mt-auto" type="submit"
+                    >Add to cart</a
+                  >
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col mb-5">
+            <form action="process/cart" method='POST'  class="card h-100">
+              <!-- Sale badge-->
+              <div
+                class="badge bg-dark text-white position-absolute"
+                style="top: 0.5rem; right: 0.5rem"
+              >
+                Sale
+              </div>
+              <!-- Product image-->
+              <img
+                class="card-img-top"
+                src="https://m.blissdeco.co.kr/web/product/big/202303/83468247a0dfa39aa8252cff79b595ad.jpg"
+                alt="..."
+              />
+              <!-- Product details-->
+              <div class="card-body p-4">
+                <div class="text-center">
+                  <!-- Product name-->
+                  <h5 class="fw-bolder">
+                    shoe closet</h5>
+                  <input type="hidden" class="fw-bolder" name="productname" id="productname" value="shoe closet"></input>
+                 
+                  <!-- Product price-->
+                  <div
+                  class="d-flex justify-content-center small text-warning mb-2"
+                  >
+                  <div class="bi-star-fill"></div>
+                  <div class="bi-star-fill"></div>
+                  <div class="bi-star-fill"></div>
+                  <div class="bi-star-fill"></div>
+                  
+                </div>
+                <span class="text-muted text-decoration-line-through"
+                  >$50.00</span
+                >
+                  <input type="hidden" name="price" id="price" value="40">$10.00</input>
+                </div>
+              </div>
+              <!-- Product actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center">
+                  <button class="btn btn-outline-dark mt-auto" type="submit"
+                    >Add to cart</a
+                  >
+                </div>
+              </div>
+            </form>
+          </div>
+          
+          
+          
+        </div>
+      </div>
+    </section>
+    <!-- Footer-->
+    <%- include('footer') %>
+  </body>
+</html>
