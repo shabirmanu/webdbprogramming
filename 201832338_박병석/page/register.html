@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+</head>
+<body>
+    <h1>register</h1>
+    <form action="process/login" method="post"></form>
+    <div class = "form-row">
+        <label for="username">Username</label>
+        <input type="text" name="username" value="" required id="username">
+    </div>
+    <div class = "form-row">
+        <label for="password">password</label>
+        <input type="text" name="password"value="" required id="password">
+    </div>
+<!-- required를 통해 필수처리 완료-->
+        <button type="submit">제출하기</button>
+ 
+    </body>
+</html>
+<script type="text/Javascript">
+
+function userjson() {
+    const parmas = req.body;
+    const formData ={
+        username: params.username,
+        password: params.password,
+        email: params.email,
+        login_count : 0,
+        imported : 0
+    };
+    const formDataJSON = JSON.stringify(formData);
+    console.log(formData);
+}
+</script>
