@@ -1,0 +1,40 @@
+<%- include('head') %>
+<%- include('head2') %>
+<p></p>
+<div class="cell-lg-4 cell-xl-3 reveal-lg-flex">
+    <div class="hotel-booking-form">
+      <h3>비밀번호 변경</h3>
+      <!-- RD Mailform-->
+      <form class="rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="/process/update/pw">
+        <div class="range range-sm-bottom spacing-20">
+            <div class="cell-lg-12 cell-md-4">
+                <p class="text-uppercase">현재 비밀번호</p>
+                <div class="form-wrap">
+                  <input class="form-input" id="now-pw" type="password" name="nowpw" data-constraints="@Required" maxlength="20">
+                  <label class="form-label" for="now-pw"></label>
+                </div>
+              </div>
+          <div class="cell-lg-6 cell-md-4 cell-xs-6">
+            <p class="text-uppercase">새로운 비밀번호</p>
+            <div class="form-wrap form-wrap-validation">
+                <input class="form-input" id="new-pw" type="password" name="newpw" data-constraints="@Required" maxlength="20">
+                <label class="form-label" for="new-pw"></label>
+            </div>
+          </div>
+          <div class="cell-lg-6 cell-md-4 cell-xs-6">
+            <p class="text-uppercase">새로운 비밀번호 확인</p>
+            <div class="form-wrap form-wrap-validation">
+                <input class="form-input" id="new-pw2" type="password" name="newpw2" data-constraints="@Required" maxlength="20">
+                <label class="form-label" for="new-pw2"></label>
+            </div>
+          </div>
+          <div class="cell-lg-12 cell-md-4">
+            <button class="button button-primary button-square button-block button-effect-ujarak" type="submit"><span>submit</span></button>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
+<p></p>
+
+<%- include('foot') %>

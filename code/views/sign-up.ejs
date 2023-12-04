@@ -1,0 +1,96 @@
+<%- include('head') %>
+<%- include('head2') %>
+<p> </p>
+<div class="cell-lg-4 cell-xl-3 reveal-lg-flex">
+    <div class="hotel-booking-form">
+      <h3> <%= __('signup') %></h3>
+      <!-- RD Mailform-->
+      <form class="rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="process/sign-up">
+        <div class="range range-sm-bottom spacing-20">
+          <div class="cell-lg-12 cell-md-4">
+            <p class="text-uppercase"><%= __('id') %> <button type='button' onclick="goCheckId()">ID 중복 확인</button></p>
+            <div class="form-wrap">
+              <input class="form-input" id="signup-id" type="text" name="userid" data-constraints="@Required" maxlength="15">
+              <label class="form-label" for="signup-id">4자~15자 이내</label>
+            </div>
+          </div>
+          <div class="cell-lg-6 cell-md-4 cell-xs-6">
+            <p class="text-uppercase"><%= __('password') %></p>
+            <div class="form-wrap form-wrap-validation">
+                <input class="form-input" id="signup-pw" type="password" name="userpw" data-constraints="@Required" maxlength="20">
+                <label class="form-label" for="signup-pw">8자~20자 이내</label>
+            </div>
+          </div>
+          <div class="cell-lg-6 cell-md-4 cell-xs-6">
+            <p class="text-uppercase"><%= __('password2') %> <button type='button' onclick="goCheckPw()"><%= __('password2') %></button></p>
+            <div class="form-wrap form-wrap-validation">
+                <input class="form-input" id="signup-pw2" type="password" name="userpw2" data-constraints="@Required">
+                <label class="form-label" for="signup-pw2">8자~20자 이내</label>
+            </div>
+          </div>
+          <div class="cell-lg-12 cell-md-4">
+            <p class="text-uppercase"><%= __('name') %></p>
+            <div class="form-wrap">
+              <input class="form-input" id="signup-name" type="text" name="username" data-constraints="@Required">
+              <label class="form-label" for="signup-name">Your Full Name</label>
+            </div>
+          </div>
+          <div class="cell-lg-6 cell-md-4 cell-xs-6">
+            <p class="text-uppercase">E-MAIL</p>
+            <div class="form-wrap form-wrap-validation">
+                <input class="form-input" id="signup-email" type="email" name="useremail" data-constraints="@Email @Required">
+                <label class="form-label" for="signup-email">E-mail</label>
+            </div>
+          </div>
+          <div class="cell-lg-6 cell-md-4 cell-xs-6">
+            <p class="text-uppercase"><%= __('phone') %></p>
+            <div class="form-wrap form-wrap-validation">
+                <input class="form-input" id="signup-phone" type="text" name="userphone" data-constraints="@Numeric">
+                <label class="form-label" for="signup-phone">ex: 01012345678</label>
+              </select>
+            </div>
+          </div>
+          <div class="cell-lg-12 cell-md-4">
+            <button class="button button-primary button-square button-block button-effect-ujarak" type="submit"><span><%= __('signup') %></span></button>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
+<p> </p>
+<script>
+  document.getElementById('signup-id').addEventListener('input', function () {
+      var inputValue = this.value;
+      var minLength = 4;
+      if (inputValue.length < minLength) {
+          this.setCustomValidity('최소 ' + minLength + '자 이상 입력하세요.');
+      } else {
+          this.setCustomValidity('');
+      }
+  });
+
+  document.getElementById('signup-pw').addEventListener('input', function () {
+      var inputValue = this.value;
+      var minLength = 8;
+      if (inputValue.length < minLength) {
+          this.setCustomValidity('최소 ' + minLength + '자 이상 입력하세요.');
+      } else {
+          this.setCustomValidity('');
+      }
+  });
+
+  function goCheckId() {
+    const signupIdValue = document.getElementById('signup-id').value;
+    window.open(`/checkid/${signupIdValue}`, 'pop-up', 'top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
+  }
+
+  function goCheckPw() {
+    const pw1 = document.getElementById('signup-pw').value;
+    const pw2 = document.getElementById('signup-pw2').value;
+    if(pw1 === pw2)
+      window.open(`/checkpw/1`, 'pop-up', 'top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
+    else
+      window.open(`/checkpw/0`, 'pop-up', 'top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
+  }
+</script>
+<%- include('foot') %>

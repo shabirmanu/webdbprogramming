@@ -1,0 +1,78 @@
+<%- include('head') %>
+<%- include('head2') %>
+
+<div>
+<div>
+    <div class="cell-lg-4 cell-xl-3 reveal-lg-flex">
+        <div class="hotel-booking-form">
+            <h3>Check Availability</h3>
+            <!-- RD Mailform-->
+                <form class="rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="get" action="/book/list">
+                    <div class="range range-sm-bottom spacing-20">
+            <!--
+            <div class="cell-lg-12 cell-md-4">
+              <p class="text-uppercase">Your Name</p>
+              <div class="form-wrap">
+                <input class="form-input" id="contact-first-name" type="text" name="name" data-constraints="@Required">
+                <label class="form-label" for="contact-first-name">Your Full Name</label>
+              </div>
+            </div>
+            -->
+                        <div class="cell-lg-12 cell-md-4 cell-sm-6">
+                            <p class="text-uppercase">Arrival</p>
+                            <div class="form-wrap">
+                                <input class="form-input" id="date-in" type="date" name="checkin" data-constraints="@Required">
+                            </div>
+                        </div>
+                        <div class="cell-lg-12 cell-md-4 cell-sm-6">
+                            <p class="text-uppercase">Departure</p>
+                            <div class="form-wrap">
+                                <input class="form-input" id="date-out" type="date" name="checkout" data-constraints="@Required">
+                            </div>
+                        </div>
+                        <% if(role === 2) { %>
+                        <div class="cell-lg-6 cell-md-4">
+                            <p class="text-uppercase">인원</p>
+                            <div class="form-wrap form-wrap-validation">
+                <!--Select 2-->
+                            <select name="num" class="form-input select-filter" data-minimum-results-search="-1" data-placeholder="1" data-constraints="@Required">
+                            <option>&nbsp;</option>
+                            <option value=1 selected>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                            </select>
+                            </div>
+                        </div>
+                        <% } %>
+                        <!--
+                        <div class="cell-lg-6 cell-md-4">
+                            <p class="text-uppercase">room</p>
+                            <div class="form-wrap form-wrap-validation">
+                                -->
+                <!--Select 2-->
+                <!--
+                            <select name="room" class="form-input select-filter" data-minimum-results-search="-1" data-placeholder="1" data-constraints="@Required">
+                                <option>&nbsp;</option>
+                                <option value=1 selected>single</option>
+                                <option value=2>twin</option>
+                                <option value=3>double</option>
+                                <option value=4>family</option>
+                            </select>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                    <div class="cell-lg-12 cell-md-4">
+                        <button class="button button-primary button-square button-block button-effect-ujarak" type="submit"><span>check availability</span></button>
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
+  <br>
+  <br>
+</div>
+<p> </p>
+<%- include('foot') %>

@@ -1,0 +1,17 @@
+{
+	"about": "호텔 소개",
+	"room": "객실",
+	"contacts": "문의",
+	"reservation": "예약",
+	"login": "로그인",
+	"signup": "회원가입",
+	"mypage": "마이페이지",
+	"id": "아이디",
+	"password": "비밀번호",
+	"password2": "비밀번호 확인",
+	"name": "이름",
+	"phone": "전화번호",
+	"book": "예약하기",
+	"contact": "contact",
+	"logout": "logout"
+}

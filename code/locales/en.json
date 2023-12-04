@@ -1,0 +1,16 @@
+{
+	"about": "about us",
+	"room": "room",
+	"contacts": "contacts",
+	"reservation": "reservation",
+	"login": "login",
+	"signup": "sign up",
+	"mypage": "mypage",
+	"id": "id",
+	"password": "password",
+	"password2": "confirm password",
+	"name": "name",
+	"phone": "phone",
+	"book": "book a room",
+	"logout": "logout"
+}

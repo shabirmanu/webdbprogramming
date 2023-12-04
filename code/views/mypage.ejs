@@ -1,0 +1,65 @@
+<%- include('head') %>
+<%- include('head2') %>
+<div>
+  <div>
+    <h3><%= id %> 님의 마이페이지</h3>
+  </div>
+  <br>
+  <br>
+
+  <div>
+    <a href="/update/pw" class="btn button button-primary button-square"> 비밀번호 변경 </a>
+  </div>
+
+  <br><!--
+<div>
+  <a href="/delete/user/<%= id %>" class="btn"> 회원 탈퇴 </a>
+  </div>
+  <br>
+  -->
+  <% if(role === 2) { %>
+  <br>
+  <div>
+      <h2 class="text-center"> 예약 정보 </h2>
+  </div>
+    <br>
+                  <div>
+                  <% if(data.length === 0) { %>
+                      <p></p>
+                      <h3>예약 정보가 없습니다.</h3>
+                      <% }else{ %>
+                          <p></p>
+                  <table class="table-custom">
+                  <thead>
+                      <th>No</th>
+                      <th>room</th>
+                      <th>check-in</th>
+                      <th>check-out</th>
+                      <th>예약취소</th>
+                  </thead>
+                  <tbody>
+                          <% data.forEach((row, index)=>{ %>
+                              <tr>
+                              <td> <%= index+1 %></td>
+                              <td> <% x = row.roomid %>
+                              <% if(x === 1) { %> Single 
+                              <% } if(x === 2) { %> Twin
+                              <% } if(x === 3) { %> Double
+                              <% } if(x === 4) { %> Family
+                                <% } %>
+                            </td>
+                              <td> <%= row.checkindate.toLocaleDateString() %></td>
+                              <td> <%= row.checkoutdate.toLocaleDateString() %></td>
+                              <td>
+                              <a href="/delete/reservation/<%= row.reservationid %>" class="btn">취소</a>
+                              </td>
+                              </tr>
+                      <% }) %>
+                  </tbody>
+                </table>
+                  <% } %>
+      </div>
+  </div>
+</div>
+<% } %>
+<%- include('foot') %>
