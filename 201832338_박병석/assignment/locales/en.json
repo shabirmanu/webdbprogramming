@@ -1,0 +1,12 @@
+{
+	"intro": "MySNS",
+	"introduce": "show me about yourself",
+	"introduce2": "make your SNS",
+	"vcontent": "view content",
+	"vmember" : "view member(only admin)",
+	"content" : "content",
+	"login" : "login",
+	"signup" : "signup",
+	"Login" : "Login",
+	"Logout" : "Logout"
+}
