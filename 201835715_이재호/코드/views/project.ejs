@@ -1,0 +1,83 @@
+<%- include('head') %>
+
+<main id="main">
+
+    <section class="section pb-5">
+      <div class="container">
+
+        <div class="row mb-5 align-items-end">
+          <div class="col-md-6" data-aos="fade-up">
+            <h2>Add Project </h2>
+            <p class="mb-0">
+            </p>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-5 mb-md-0" data-aos="fade-up">
+
+            <form action="process/project" method="post" role="form" class="">
+
+              <div class="row gy-3">
+                <div class="col-md-6 form-group">
+                    <label for="username">Project title</label>
+                    <input type="text" value="" name="title" id="title">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="desc">Description</label>
+                    <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
+                </div>
+                <div class="col-md-12 form-group">
+                    <label for="type">Type</label>
+                    <select name="type" id="type">
+                        <option value="-1" selected>Select</option>
+                        <option value="web" selected>Web</option>
+                        <option value="app" selected>Mobile App</option>
+                        <option value="ai" selected>AI</option>
+                        <option value="other" selected>Other</option>
+                    </select>
+                </div>
+                
+
+                <div class="col-md-12 my-3">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+                </div>
+
+                <div class="col-md-6 mt-0 form-group">
+                  <input type="submit" class="readmore d-block w-100" value="Add Project">
+                </div>
+              </div>
+
+            </form>
+
+          </div>
+
+          <div class="col-md-4 ml-auto order-2" data-aos="fade-up">
+            <ul class="list-unstyled">
+              <li class="mb-3">
+                <strong class="d-block mb-1">Address</strong>
+                <span>203 Fake St. Mountain View, San Francisco, California, USA</span>
+              </li>
+              <li class="mb-3">
+                <strong class="d-block mb-1">Phone</strong>
+                <span>+1 232 3235 324</span>
+              </li>
+              <li class="mb-3">
+                <strong class="d-block mb-1">Email</strong>
+                <span>youremail@domain.com</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main><!-- End #main -->
+
+<%- include('foot') %>

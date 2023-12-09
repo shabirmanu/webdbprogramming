@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mysql": "^2.18.1"
+  },
+  "name": "com.overeasy.practice",
+  "description": "Welcome to Web Programming course. In this page, you will find all the material related to the lecture.",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
