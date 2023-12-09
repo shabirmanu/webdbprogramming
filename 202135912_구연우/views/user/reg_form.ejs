@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+    <script language="javascript">
+      function validate() {
+        let pw1 = document.getElementById("pw1").value;
+        let pw2 = document.getElementById("pw2").value;
+        let uid = document.getElementById("uid").value;
+        let 
+
+        if (pw1 != pw2) {
+          alert("비밀번호와 비밀번호 확인 입력값이 다릅니다.");
+          return false;
+        }
+        return true;
+      }
+    </script>
+
+    <p>
+    <div class="container">  <!-- container class 가 페이지의 컨텐츠영역을 지정 -->
+    <div class="jumbotron" style="width:500px; margin:auto">
+
+    <div class="bm-login-form" style='width:400px; margin-left:auto; margin-right:auto; border:1px'>
+
+      <div class="starter-template">
+        <h5> 회원가입</h5> <hr>
+      </div>
+
+     <form name=join onsubmit="return validate()" method=post action="/users/reg">
+       <div class="form-group">
+         <label for="exampleInputEmail1">아이디(이메일로 입력)</label>
+         <input type="email" class="form-control" name="uid" id="uid" aria-describedby="emailHelp" placeholder="이메일 형식으로 입력, 최대 20자">
+       </div>
+       <div class="form-group">
+         <label for="exampleInputPassword1">비밀번호</label>
+         <input type="password" class="form-control" name="pw1" id="pw1" placeholder="암호는 최대20자까지 입력">
+       </div>
+       <div class="form-group">
+         <label for="exampleInputPassword2">비밀번호 확인</label>
+         <input type="password" class="form-control" name="pw2" id="pw2" placeholder="암호를 한번더 입력해주세요">
+       </div>
+       <div class="form-group">
+         <label for="exampleInputEmail1">이름</label>
+         <input type="text" class="form-control" name="uname" id="uname" placeholder="이름을 입력하세요 (최대 20자)">
+       </div>
+       <div class="form-group">
+         <label for="exampleInputEmail1">핸드폰</label>
+         <input type="text" class="form-control" name="uphone" id="uphone" placeholder="핸드폰번호를 입력하세요 (최대 15자)">
+       </div>
+       <div class="form-group">
+         <label for="exampleInputEmail1">주소</label>
+         <input type="text" class="form-control" name="uaddress" id="uaddress" placeholder="주소를 입력하세요 (최대 100자)">
+       </div>
+       <p>★ 가입 시 100,000 포인트가 지급됩니다! ★</p>
+       </div>
+
+         <hr>
+         <button type="submit" class="btn btn-primary">회원가입</button>
+         <button type="submit" class="btn btn-primary">취소</button>
+      </form>
+     </div>
+     </div>
+    </div><!-- /.container -->
+
+ <!-- Footer 영역 -->
