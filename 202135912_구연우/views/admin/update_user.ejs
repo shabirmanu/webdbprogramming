@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+    <script language="javascript">
+      function validate() {
+        let user = document.getElementById("uid").value;
+        if (user == '') {
+          alert("상품 수정에 실패했습니다.");
+          return false;
+        }
+        return true;
+      }
+    </script>
+
+    <p>
+    <div class="container">  <!-- container class 가 페이지의 컨텐츠영역을 지정 -->
+    <div class="jumbotron" style="width:500px; margin:auto">
+
+    <div class="bm-login-form" style='width:400px; margin-left:auto; margin-right:auto; border:1px'>
+
+      <div class="starter-template">
+        <h5> 회원정보수정</h5> <hr>
+      </div>
+
+     <form name=join onsubmit="return validate()" method=post action="/adminprod/updateForm">
+       <div class="form-group">
+         <label for="exampleInputEmail1">아이디(이메일로 입력)</label>
+         <input type="email" class="form-control" name="uid" id="uid" aria-describedby="emailHelp" placeholder="이메일 형식으로 입력"
+          value="<%= user.uid %>" readonly>
+          아이디는 수정이 불가능합니다.
+       </div>
+       <div class="form-group">
+         <label for="exampleInputEmail1">이름</label>
+         <input type="text" class="form-control" name="uname" id="uname" value="<%= user.name %>">
+       </div>
+       <div class="form-group">
+         <label for="exampleInputEmail1">핸드폰</label>
+         <input type="text" class="form-control" name="uphone" id="uphone" value="<%= user.phone %>">
+       </div>
+       <div class="form-group">
+         <label for="exampleInputEmail1">주소</label>
+         <input type="text" class="form-control" name="uaddress" id="uaddress" value="<%= user.address %>">
+       </div>
+       <div class="form-group">
+        <label for="exampleInputEmail1">포인트</label>
+        <input type="text" class="form-control" name="upoint" id="upoint" value="<%= user.point %>">
+      </div>
+       </div>
+
+         <hr>
+         <button type="submit" class="btn btn-primary">수정</button>
+         <button type="button" class="btn btn-primary" onclick="location.href='/adminprod/ulist'">취소</button>
+      </form>
+     </div>
+     </div>
+    </div><!-- /.container -->
+
+ <!-- Footer 영역 -->

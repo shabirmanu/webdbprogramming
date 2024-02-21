@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+ <!--  Content (배너이미지) 부분 -->
+  <div> <img src="/images/admin_banner.png" class="img-fluid" alt="배너이미지" width="100%"> </div>
+
+  <!-- 컨텐츠(예, 쇼핑몰일경우 판매제품리스트)헤더부분 -->
+   <div class="container-fluid" style="border: solid 20px white; border-radius: 1px">
+     <div class="panel panel-default">
+   	  <div class="panel-heading">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">쇼핑몰</a></li>
+            <li class="breadcrumb-item">관리자</a></li>
+            <li class="breadcrumb-item active" aria-current="page">상품관리</li>
+          </ol>
+        </nav>
+   	  </div>
+
+      <hr>
+      <div class="container">
+        <a class="btn btn-default" href="/adminprod/form">+신규등록</a>
+        <a class="btn btn-default" href="#" onclick="updateProduct()">±상품수정</a>
+        <a class="btn btn-default" href="#" onclick="deleteProduct()">-선택삭제</a>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th> <input type="checkbox" id="check_all"> </th>
+                <th> 번호 </th>
+                <th> 제품분류 </th>
+                <th> 제조사 </th>
+                <th> 상품명 </th>
+                <th> 모델명 </th>
+                <th> 등록일 </th>
+                <th> 판매가 </th>
+                <th> 재고량 </th>
+              </tr>
+            </thead>
+            <tbody>
+               <% prodata.forEach(function (item, index) { %>
+              <tr>
+                <td> <input type="checkbox" name=<%= item.itemid %> class="check"> </td>
+                <td> <%= item.itemid %> </td>
+                <td> <%= item.category %> </td>
+                <td> <%= item.maker %> </td>
+                <td> <%= item.pname %> </td>
+                <td> <%= item.modelnum %> </td>
+                <td> <%= item.rdate.toLocaleDateString(); %> </td>
+                <td> <%= item.price %> </td>
+                <td> <%= item.amount %> </td>
+              </tr>
+              <% }); %>
+            </table>
+          </div>
+
+  <p>
+    <nav aria-label="...">
+      <ul class="pagination justify-content-center">
+        <% if (currentPage > pagesPerGroup) { %>
+          <li class="page-item">
+            <a class="page-link" href="/adminprod/list?page=<%= startPage - 1 %>">&lt;</a>
+          </li>
+        <% } %>
+        <% for (let i = startPage; i <= endPage; i++) { %>
+          <% if (i === currentPage) { %>
+            <li class="page-item active" aria-current="page">
+              <span class="page-link"><%= i %></span>
+            </li>
+          <% } else { %>
+            <li class="page-item">
+              <a class="page-link" href="/adminprod/list?page=<%= i %>"><%= i %></a>
+            </li>
+          <% } %>
+        <% } %>
+        <% if (endPage < totalPage) { %>
+          <li class="page-item">
+            <a class="page-link" href="/adminprod/list?page=<%= endPage + 1 %>">&gt;</a>
+          </li>
+        <% } %>
+      </ul>
+    </nav>
+  </p> 
+    
+
+
+<script>
+  const topCheckbox = document.querySelector("#check_all");       // 전체선택 체크박스
+  const listCheckbox = document.querySelectorAll(".check");       // 개별 체크박스
+
+  topCheckbox.addEventListener('click', checkAll);                // 전체선택, 전체해제
+
+  // 전체선택 버튼
+  function checkAll() {
+    listCheckbox.forEach((element, idx) => {
+      element.checked = topCheckbox.checked;
+    });
+  }
+
+  // 선택 상품 삭제
+  function deleteProduct() {
+    const checkedArr = [];
+    listCheckbox.forEach((element, idx) => {
+      if (element.checked) {
+        // checkedArr.push
+        console.log(element.name);
+        checkedArr.push(element.name);
+      }
+    });
+    if(checkedArr.length === 0) {
+      alert('선택된 항목이 없습니다.');
+      return 0;
+    }
+    fetch("/adminprod/product", {
+      method: "DELETE",
+      headers: {  "Content-Type": "application/json", },
+      body: JSON.stringify({
+          checkedArr
+      }),
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.result) {
+        alert('선택한 상품이 삭제되었습니다.');
+        location.reload(); // 삭제 성공시 새로고침
+      }
+      else {
+        alert('삭제에 실패하였습니다.');
+        location.reload(); // 삭제 실패(해당 데이터 없음)시 새로고침
+      }
+    });
+  }
+
+  //선택 상품 수정
+  function updateProduct() {
+    const checkedArr = [];
+    listCheckbox.forEach((element, idx) => {
+      if (element.checked) {
+        // checkedArr.push
+        console.log(element.name);
+        checkedArr.push(element.name);
+      }
+    });
+    if(checkedArr.length === 0) {
+      alert('선택된 항목이 없습니다.');
+      return 0;
+    }
+    else if(checkedArr.length >= 2) {
+      alert('항목을 1개만 선택해주세요.');
+      return 0;
+    }
+    else {
+      console.log(checkedArr[0]);
+      location.href = '/adminprod/updateForm/' + String(checkedArr[0]);
+      
+      // redirect + Param(itemid)
+      // -> express에서 param을 인지하고 해당 itemid에 맞는 form 출력
+      // 수정 ejs에서 onclick으로 수정하기 버튼 구현
+      // 
+    }
+
+  }
+
+    // if (topCheckbox.checked === true) {
+    //   listCheckbox.forEach(element => {
+    //     element.checked = true;
+    //   });
+    // }
+    // else {
+    //   listCheckbox.forEach(element => {
+    //     element.checked = false;
+    //   });
+    // }
+
+
+  
+</script> 
