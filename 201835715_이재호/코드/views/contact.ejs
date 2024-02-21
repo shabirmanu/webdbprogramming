@@ -1,0 +1,99 @@
+<%- include("head") %>
+
+  <main id="main">
+    <script type="text/javascript" src="/scripts/contact.js" defer></script>
+    <section class="section pb-5">
+      <div class="container">
+
+        <div class="row mb-5 align-items-end">
+          <div class="col-md-6" data-aos="fade-up">
+            <h2>고객센터</h2>
+            <p class="mb-0">
+              원하시는 사항을 이곳에서 접수해주시면 담당자가 검토 후 연락드리겠습니다.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="column">
+          <div class="row">
+            <div class="col-md-6 mb-5 mb-md-0" data-aos="fade-up">
+  
+              <form action="/contact" method="post" role="form" class="node-js" onsubmit="onSubmitForm(event)">
+  
+                <div class="row gy-3">
+                  <div class="col-md-6 form-group">
+                    <label for="name">이름</label>
+                    <input type="text" name="name" class="form-control" id="name" required>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="name">이메일</label>
+                    <input type="email" class="form-control" name="email" id="email" required>
+                  </div>
+                  <div class="col-md-12 form-group">
+                    <label for="name">비밀번호 (숫자 4자리)</label>
+                    <input type="text" class="form-control" name="password" id="password" pattern="[0-9]*" maxlength="4" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
+                  </div>
+                  <div class="col-md-12 form-group">
+                    <label for="name">문의사항</label>
+                    <textarea class="form-control" name="message" cols="30" rows="10" required></textarea>
+                  </div>
+  
+                  <div class="col-md-6 mt-0 form-group">
+                    <input type="submit" class="readmore d-block w-100" value="접수하기">
+                  </div>
+                </div>
+  
+              </form>
+  
+            </div>
+  
+            <div class="col-md-4 ml-auto order-2" data-aos="fade-up">
+              <ul class="list-unstyled">
+                <li class="mb-3">
+                  <strong class="d-block mb-1">Address</strong>
+                  <span>경기도 성남시 수정구 성남대로 1342 (복정동 620-2) 가천대학교</span>
+                </li>
+                <li class="mb-3">
+                  <strong class="d-block mb-1">Phone</strong>
+                  <span>031-123-4567</span>
+                </li>
+                <li class="mb-3">
+                  <strong class="d-block mb-1">Email</strong>
+                  <span>iwannagohome@gachon.ac.kr</span>
+                </li>
+              </ul>
+            </div>
+  
+          </div>
+          
+          <table>
+            <thead>
+                <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>문의사항</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(function(entry) { %>
+                <tr>
+                    <td class="td_normal"><%= entry.id %></td>
+                    <td class="td_normal"><%= entry.name %></td>
+                    <td class="td_message"><%= entry.message %></td>
+                    <td class="td_normal">
+                      <button onclick="onClickEdit('<%= entry.id %>', '<%= entry.password %>'); return false;">수정</button>
+                      <button onclick="onClickDelete('<%= entry.id %>', '<%= entry.password %>'); return false;">삭제</button>
+                    </td>
+                </tr>
+                <% }); %>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </section>
+  </main><!-- End #main -->
+
+<%- include("foot") %>
