@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>showcontent</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Custom Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body class="d-flex flex-column">
+    <main class="flex-shrink-0">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+            <div class="container px-5">
+                <a class="navbar-brand" href="/"><span class="fw-bolder text-primary">SNS content</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page content-->
+        <div class="container">
+            <table class="table table-bordered">
+            <div>
+                <h2>Login complete and membership information</h2>
+                <a href="/content" class="btn btn-primary">Create Post</a>
+            </div>
+            <thead>
+                <tr>
+                    <th>number</th>
+                    <th>username</th>
+                    <th>email</th>
+                    <th>Password</th>
+                    <th>gender</th>
+                    <th>role</th>
+                    <% if(role && role == 1) {%>
+                    <th>action</th>
+                    <% } %>
+                </tr>
+            </thead>
+            <tbody>
+                <!--forEach란 반복문인데 배열의 각 요소에 대해 주어진 함수 실행 -->
+                <% data.forEach(function(row, index) { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= row.username %></td>
+                        <td><%= row.email %></td>
+                        <td><%= row.password %></td>
+                        <td><%= row.gender %></td>
+                        <td><%= row.role %></td>
+                        <% if(role == 1) { %>
+                                <td><a href="/showlogin/<%= row.username %>/delete" class="btn btn-warning"onclick = "return confirm('삭제하시겠습니까?')">Delete</a>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% }); %>  
+            </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

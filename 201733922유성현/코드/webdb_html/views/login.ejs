@@ -1,0 +1,26 @@
+<%- include('nav') %>
+<div class="container" style="margin-top: 70px;">
+    <div class="input-form-backgroud row">
+      <div class="input-form col-md-12 mx-auto">
+        <h3 class="mb-3" style="margin-bottom: 30px;">로그인</h3>
+
+    <form action="/login" method="post">
+        <div>
+            <div class="col-md-6 mb-3" style="margin-bottom: 10px;">
+                <label for="id" class="form-label">아이디</label>
+                <input type="text" class="form-control" name="id" id="id" placeholder="" value="" required>
+        </div>
+        <div class="col-md-6 mb-6">
+            <label for="password" class="form-label">비밀번호</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="" value="" required>
+
+          </div>
+          <div class="col-md-11"></div>
+          <button class="btn btn-primary btn-md col-md-1" style="margin-top: 30px;" type="submit">로그인</button>
+    </form>
+    <div class="btn-warning padding-top"><%=message%></div>
+</div>
+</div>
+</div>
+    </body>
+</html>
